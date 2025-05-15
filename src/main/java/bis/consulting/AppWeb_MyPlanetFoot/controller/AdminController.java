@@ -13,10 +13,16 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @GetMapping(value = {"/", "/home"})
-    public String home(Model model) {
-        Iterable<AdminModel> listeAdmin = adminService.getAdmins();
-        model.addAttribute("lisetAdmin", listeAdmin);
+    @GetMapping(value = "/hello")
+    public String hello() {
         return "home";
     }
+
+    @GetMapping(value = {"/", "/admins"})
+    public String home(Model model) {
+        Iterable<AdminModel> listeAdmin = adminService.getAdmins();
+        model.addAttribute("listeAdmin", listeAdmin);
+        return "admins";
+    }
+
 }

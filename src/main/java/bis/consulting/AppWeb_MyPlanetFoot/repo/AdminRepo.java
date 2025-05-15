@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+
 @Slf4j
 @Component
 public class AdminRepo {
@@ -18,17 +20,31 @@ public class AdminRepo {
 
     public Iterable<AdminModel> getAdmins() {
         String baseURL = props.getApiURL();
-        String getAdminURL = baseURL + "/admins";
+        String getAdminURL = baseURL + "/admin";
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Iterable<AdminModel>> response = restTemplate.exchange(
-                getAdminURL,
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<>() {}
-        );
-        log.debug("Get Admins Call " + response.getStatusCode());
-        return response.getBody();
+
+        try {
+            ResponseEntity<Iterable<AdminModel>> response = restTemplate.exchange(
+                    getAdminURL,
+                    HttpMethod.GET,
+                    null,
+                    new ParameterizedTypeReference<>() {}
+            );
+            log.debug("Get Admins Call {}", response.getStatusCode());
+
+            if (response.getBody() != null) {
+                return response.getBody();
+            } else {
+                log.warn("La réponse de l'API est vide");
+                return new ArrayList<>();
+            }
+
+        } catch (Exception e) {
+            log.error("Erreur lors de l'appel à l'API des admins : {}", e.getMessage());
+            return new ArrayList<>();
+        }
     }
+
 
 
 }

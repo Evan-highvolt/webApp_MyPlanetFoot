@@ -1,0 +1,41 @@
+/* Table des admins avec un thème football */
+.custom-table {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* En-tête aux couleurs du football */
+.table-football {
+    background-color: #006400; /* Vert gazon */
+    color: #ffffff;           /* Texte blanc */
+}
+
+.table-football th {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    padding: 12px;
+    text-align: center;
+}
+
+/* Lignes de la table */
+tbody tr:hover {
+    background-color: #d1e7dd; /* Vert pâle pour le survol */
+}
+
+tbody td {
+    padding: 12px;
+    font-size: 1rem;
+}
+
+/* Ombre et arrondi */
+.shadow-lg {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Message si la liste est vide */
+.text-danger {
+    font-size: 1.2rem;
+    color: #ff0000;
+}
+
+/* Animation légère pour les lignes*

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - FootConnect</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/login.css}" />
+</head>
+<body>
+<div class="login-container">
+<!--    <img th:src="@{/images/football}" alt="Logo FootConnect" class="logo">-->
+    <h1>Connectez-vous à FootConnect</h1>
+    <p>Le réseau des passionnés de football</p>
+    <form class="login-form" th:action="@{/login}" method="post">
+        <div>
+            <input type="text" id="username" name="username" placeholder="Adresse e-mail ou nom d'utilisateur" required="required" />
+        </div>
+        <div>
+            <input type="password" id="password" name="password" placeholder="Mot de passe" required="required" />
+        </div>
+        <button type="submit">Se connecter</button>
+        <a th:href="@{/forgot-password}" class="forgot-password">Mot de passe oublié ?</a>
+    </form>
+    <div class="signup-link">
+        Nouveau sur FootConnect ? <a th:href="@{/signup}">Inscrivez-vous</a>
+    </div>
+</div>
+</body>
+</html>
