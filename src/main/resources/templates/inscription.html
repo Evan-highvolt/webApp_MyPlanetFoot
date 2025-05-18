@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscription My PlanetFoot</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/styles/inscription.css}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="main-container">
+  <div class="header-logo">
+<!--    <img th:src="@{/images/}" alt="Logo MyPlanetFoot" class="logo-img"> Ici on ajout le logo-->
+    <h1>My PlanetFoot</h1>
+  </div>
+
+  <div class="registration-form-container">
+    <h2>Créez votre compte</h2>
+    <hr>
+    <form th:action="@{/signup}" method="post" class="registration-form">
+      <div class="form-row">
+        <div class="form-group">
+          <input type="text" id="prenom" name="prenom" placeholder="Prénom" required>
+        </div>
+        <div class="form-group">
+          <input type="text" id="nom" name="nom" placeholder="Nom" required>
+        </div>
+      </div>
+
+      <div class="form-group full-width">
+        <input type="email" id="email" name="email" placeholder="Adresse e-mail" required>
+      </div>
+
+      <div class="form-group full-width">
+        <input type="password" id="password" name="password" placeholder="Nouveau mot de passe" required>
+      </div>
+
+      <div class="form-group full-width">
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirmer le mot de passe" required>
+      </div>
+
+      <div class="form-group full-width">
+        <input type="tel" id="telephone" name="telephone" placeholder="Numéro de téléphone (optionnel)">
+      </div>
+
+      <p class="section-title">Adresse (optionnel)</p>
+      <div class="form-row">
+        <div class="form-group">
+          <input type="text" id="numRue" name="numRue" placeholder="N° de rue">
+        </div>
+        <div class="form-group">
+          <input type="text" id="rue" name="rue" placeholder="Rue">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <input type="text" id="ville" name="ville" placeholder="Ville">
+        </div>
+        <div class="form-group">
+          <input type="text" id="pays" name="pays" placeholder="Pays">
+        </div>
+      </div>
+
+      <div class="form-group full-width">
+        <select id="role" name="role" required> <!--th:field="*{role}"  -- on ajout ca apres l'attribut name= role -->
+          <option value="" disabled selected>Vous êtes</option>
+          <option th:value="recruteur" th:text="'Recruteur'">Recruteur</option>
+          <option th:value="club" th:text="'Club'">Club</option>
+          <option th:value="fan" th:text="'Fan'">Fan</option>
+          <option th:value="joueur" th:text="'Joueur'">Joueur</option>
+        </select>
+      </div>
+
+      <p class="terms-text">
+        En cliquant sur S'inscrire, vous acceptez nos <a th:href="@{/terms}">Conditions générales</a>. Découvrez comment nous recueillons, utilisons et partageons vos données en lisant notre <a th:href="@{/privacy}">Politique de confidentialité</a>.
+      </p>
+
+      <div class="form-group full-width">
+        <button type="submit" class="submit-btn">S'inscrire</button>
+      </div>
+    </form>
+    <hr>
+    <div class="login-link">
+      Vous avez déjà un compte ? <a th:href="@{/login}">Se connecter</a>
+    </div>
+  </div>
+</div>
+
+<!-- Inclusion du fragment footer -->
+<div th:insert="~{fragments/_footer}"></div>
+
+</body>
+</html>

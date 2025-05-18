@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion - FootConnect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <title>Connexion - My PlanetFoot</title>
     <link rel="stylesheet" type="text/css" th:href="@{/styles/login.css}" />
 </head>
 <body>
 <div class="login-container">
-<!--    <img th:src="@{/images/football}" alt="Logo FootConnect" class="logo">-->
-    <h1>Connectez-vous à FootConnect</h1>
-    <p>Le réseau des passionnés de football</p>
+<!--    <img th:src="@{/images/football}" alt="Logo My PlanetFoot" class="logo">-->
+    <h1>Connectez-vous à My PlanetFoot</h1>
     <form class="login-form" th:action="@{/login}" method="post">
         <div>
-            <input type="text" id="username" name="username" placeholder="Adresse e-mail ou nom d'utilisateur" required="required" />
+            <input type="text" id="username" name="username" placeholder="Adresse e-mail" required="required" />
         </div>
         <div>
             <input type="password" id="password" name="password" placeholder="Mot de passe" required="required" />
@@ -22,8 +24,11 @@
         <a th:href="@{/forgot-password}" class="forgot-password">Mot de passe oublié ?</a>
     </form>
     <div class="signup-link">
-        Nouveau sur FootConnect ? <a th:href="@{/signup}">Inscrivez-vous</a>
+        Nouveau sur My PlanetFoot ? <a th:href="@{/signup}">Inscrivez-vous</a>
     </div>
 </div>
+<!--<div th:insert="~{fragments/_footer}"></div>-->
+
 </body>
+
 </html>
