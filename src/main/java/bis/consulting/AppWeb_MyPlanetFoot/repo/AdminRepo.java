@@ -5,6 +5,7 @@ import bis.consulting.AppWeb_MyPlanetFoot.model.AdminModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -44,6 +45,55 @@ public class AdminRepo {
             return new ArrayList<>();
         }
     }
+
+//    public AdminModel createAdmin(AdminModel admin) {
+//        String baseURL = props.getApiURL();
+//        String createAdminURL = baseURL + "/admin";
+//
+//        RestTemplate restTemplate = new RestTemplate();
+//        HttpEntity<AdminModel> request = new HttpEntity<>(admin);
+//        ResponseEntity<AdminModel> response = restTemplate.exchange(
+//                createAdminURL,
+//                HttpMethod.POST,
+//                request,
+//                AdminModel.class
+//        );
+//        log.debug("Create Admin Call {}", response.getStatusCode());
+//
+//        return response.getBody();
+//    }
+
+    public AdminModel getAdmin(Integer id) {
+        String baseURL = props.getApiURL();
+        String getAdminURL = baseURL + "/admin/" + id;
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<AdminModel> response = restTemplate.exchange(
+                getAdminURL,
+                HttpMethod.GET,
+                null,
+                AdminModel.class
+        );
+        log.debug("Get Admin Call {}", response.getStatusCode());
+        return response.getBody();
+    }
+
+    public AdminModel creatAdmin(AdminModel admin) {
+        String baseURL = props.getApiURL();
+        String createAdminURL = baseURL + "/admin";
+
+        RestTemplate restTemplate = new RestTemplate();
+        HttpEntity<AdminModel> request = new HttpEntity<>(admin);
+        ResponseEntity<AdminModel> response = restTemplate.exchange(
+                createAdminURL,
+                HttpMethod.POST,
+                request,
+                AdminModel.class
+        );
+        log.debug("Create Admin Call {}", response.getStatusCode());
+        return response.getBody();
+    }
+
 
 
 
