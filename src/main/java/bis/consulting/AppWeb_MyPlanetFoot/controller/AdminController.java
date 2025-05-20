@@ -16,10 +16,6 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @GetMapping("/inscription")
-    public String pageInscricption() {
-        return "inscription";
-    }
 
     @GetMapping(value = {"/", "/admins"})
     public String home(Model model) {

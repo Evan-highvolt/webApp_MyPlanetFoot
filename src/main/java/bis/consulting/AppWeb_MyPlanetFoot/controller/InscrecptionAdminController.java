@@ -1,6 +1,7 @@
 package bis.consulting.AppWeb_MyPlanetFoot.controller;
 
 import bis.consulting.AppWeb_MyPlanetFoot.model.AdminModel;
+import bis.consulting.AppWeb_MyPlanetFoot.model.CompteModel;
 import bis.consulting.AppWeb_MyPlanetFoot.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class _InscrecptionController {
+public class InscrecptionAdminController {
 
     @Autowired
     private AdminService adminService;
@@ -19,21 +20,24 @@ public class _InscrecptionController {
 
     @GetMapping("/inscription")
     public String pageInscricption(Model model) {
-        model.addAttribute("admin", new AdminModel());
+        AdminModel adminModel = new AdminModel();
+        adminModel.setCompteModel(new CompteModel());
+        model.addAttribute("admin", adminModel);
         return "inscription";
     }
 
     @PostMapping("/inscription")
     public String processSignUp(@ModelAttribute("admin") AdminModel admin) {
+        admin.setEmailAdm(admin.getCompteModel().getLoginCpt());
         adminService.saveAdmin(admin);
-        return "redirect:/admins";
+        return "redirect:/login";
     }
 
-    @PostMapping(value = "/saveAdmin")
-    public ModelAndView saveAdmin(@ModelAttribute("admin") final AdminModel adminModel) {
-        adminService.saveAdmin(adminModel);
-        return new ModelAndView("redirect:/");
-    }
+//    @PostMapping(value = "/saveadmin")
+//    public ModelAndView saveAdmin(@ModelAttribute("admin") final AdminModel adminModel) {
+//        adminService.saveAdmin(adminModel);
+//        return new ModelAndView("redirect:/");
+//    }
 
 
 }

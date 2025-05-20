@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 @Data
 public class AdminModel {
+
     private Integer idAdm;
     private String nomAdm;
     private String prenomAdm;
@@ -14,4 +15,6 @@ public class AdminModel {
     private String photoPrflAdm;
     private String respoAdm;
     private LocalDate dateAdm;
+
+    private CompteModel compteModel;
 }
