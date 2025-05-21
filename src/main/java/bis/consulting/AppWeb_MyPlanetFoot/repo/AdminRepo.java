@@ -46,22 +46,6 @@ public class AdminRepo {
         }
     }
 
-//    public AdminModel createAdmin(AdminModel admin) {
-//        String baseURL = props.getApiURL();
-//        String createAdminURL = baseURL + "/admin";
-//
-//        RestTemplate restTemplate = new RestTemplate();
-//        HttpEntity<AdminModel> request = new HttpEntity<>(admin);
-//        ResponseEntity<AdminModel> response = restTemplate.exchange(
-//                createAdminURL,
-//                HttpMethod.POST,
-//                request,
-//                AdminModel.class
-//        );
-//        log.debug("Create Admin Call {}", response.getStatusCode());
-//
-//        return response.getBody();
-//    }
 
     public AdminModel getAdmin(Integer id) {
         String baseURL = props.getApiURL();
@@ -94,6 +78,13 @@ public class AdminRepo {
         return response.getBody();
     }
 
+    public void deleteAdmin(Integer id) {
+        String baseURL = props.getApiURL();
+        String deleteAdminURL = baseURL + "/admin/" + id;
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.delete(deleteAdminURL);
+
+    }
 
 
 

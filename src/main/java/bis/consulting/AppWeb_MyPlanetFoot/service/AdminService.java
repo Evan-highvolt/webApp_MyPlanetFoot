@@ -34,5 +34,9 @@ public class AdminService {
 
     }
 
+    public void deleteAdmin(Integer id) {
+        adminRepo.deleteAdmin(id);
+    }
+
 
 }

@@ -1,7 +1,29 @@
+body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    /*align-items: center;*/
+    flex-direction: column;
+    /*justify-content: space-between;*/
+
+}
+
 /* Table des admins avec un thème football */
 .custom-table {
     border-radius: 10px;
     overflow: hidden;
+
+}
+
+body > .table-responsive {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.table-responsive > .table {
+    width: 75%;
 }
 
 /* En-tête aux couleurs du football */
