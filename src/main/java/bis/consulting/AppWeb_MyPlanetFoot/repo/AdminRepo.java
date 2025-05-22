@@ -78,6 +78,22 @@ public class AdminRepo {
         return response.getBody();
     }
 
+    public AdminModel updateAdmin(AdminModel admin) {
+        String baseURL = props.getApiURL();
+        String updateAdminURL = baseURL + "/admin/" + admin.getIdAdm();
+        RestTemplate restTemplate = new RestTemplate();
+        HttpEntity<AdminModel> request = new HttpEntity<>(admin);
+        ResponseEntity<AdminModel> response = restTemplate.exchange(
+                updateAdminURL,
+                HttpMethod.PUT,
+                request,
+                AdminModel.class
+        );
+        log.debug("Update Admin Call {}", response.getStatusCode());
+        return response.getBody();
+    }
+
+
     public void deleteAdmin(Integer id) {
         String baseURL = props.getApiURL();
         String deleteAdminURL = baseURL + "/admin/" + id;

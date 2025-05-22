@@ -31,6 +31,16 @@ public class AdminService {
 
         savedAdmin = adminRepo.creatAdmin(admin);
         return savedAdmin;
+    }
+
+    public AdminModel updateAdmin(Integer id, AdminModel updatedAdmin) {
+        AdminModel existingAdmin = adminRepo.getAdmin(id);
+        existingAdmin.setPrenomAdm(updatedAdmin.getPrenomAdm());
+        existingAdmin.setNomAdm(updatedAdmin.getNomAdm().toUpperCase());
+        existingAdmin.setEmailAdm(updatedAdmin.getEmailAdm());
+        existingAdmin.setDateAdm(updatedAdmin.getDateAdm());
+        existingAdmin.setTelephoneAdm(updatedAdmin.getTelephoneAdm());
+        return adminRepo.updateAdmin(existingAdmin);
 
     }
 

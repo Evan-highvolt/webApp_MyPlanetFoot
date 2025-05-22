@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mettre a jour l'admin</title>
+</head>
+<body>
+<form th:action="@{/updatedAdmin/{id}(id=${admin.idAdm})}" method="post" th:object="${admin}">
+  <input type="text" th:field="*{prenomAdm}" />
+  <input type="text" th:field="*{nomAdm}" />
+  <input type="email" th:field="*{emailAdm}" />
+  <input type="text" th:field="*{telephoneAdm}" />
+  <input type="date" th:field="*{dateAdm}" />
+
+  <button type="submit" class="btn btn-success">Mettre à jour</button>
+</form>
+
+</body>
+</html>

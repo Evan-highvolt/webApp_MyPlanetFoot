@@ -24,6 +24,7 @@ body > .table-responsive {
 
 .table-responsive > .table {
     width: 75%;
+    height: 15%;
 }
 
 /* En-tête aux couleurs du football */

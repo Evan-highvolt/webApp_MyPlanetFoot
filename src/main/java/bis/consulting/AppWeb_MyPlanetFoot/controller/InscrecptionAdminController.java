@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class InscrecptionAdminController {
@@ -18,15 +17,15 @@ public class InscrecptionAdminController {
     private AdminService adminService;
 
 
-    @GetMapping("/inscription")
+    @GetMapping("/inscriptionAdmin")
     public String pageInscricption(Model model) {
         AdminModel adminModel = new AdminModel();
         adminModel.setCompteModel(new CompteModel());
         model.addAttribute("admin", adminModel);
-        return "inscription";
+        return "inscriptionAdmin";
     }
 
-    @PostMapping("/inscription")
+    @PostMapping("/inscriptionAdmin")
     public String processSignUp(@ModelAttribute("admin") AdminModel admin) {
         admin.setEmailAdm(admin.getCompteModel().getLoginCpt());
         adminService.saveAdmin(admin);

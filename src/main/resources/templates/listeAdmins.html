@@ -18,7 +18,7 @@
             <th scope="col">Prénom</th>
             <th scope="col">Nom</th>
             <th scope="col">ID</th>
-            <th scope="row">num</th>
+            <th scope="col">num</th>
             <th scope="col">Supprimer</th>
         </tr>
         </thead>
@@ -34,12 +34,18 @@
             <td><span th:text="${admin.idAdm}">admin ID</span></td>
             <td><span th:text="${admin.telephoneAdm}">num</span></td>
             <td>
-                <form th:action="@{/deleteAdmin/{id}(id=${admin.idAdm})}" method="post" style="margin:0;">
+                <form th:action="@{/admin/deleteAdmin/{id}(id=${admin.idAdm})}" method="post" style="margin:0;">
                     <button class="btn btn-danger btn-sm" type="submit"
                             onclick="return confirm('Confirmer la suppression de cet administrateur ?');">
                         Supprimer
                     </button>
                 </form>
+
+                <button class="btn btn-danger btn-sm">
+                <a th:href="@{/admin/updateAdmin/{id}(id=${admin.idAdm})}" >
+                    Mettre à jour</a>
+                </button>
+
             </td>
         </tr>
         </tbody>
