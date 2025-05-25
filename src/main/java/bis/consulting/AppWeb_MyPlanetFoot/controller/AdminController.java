@@ -51,17 +51,6 @@ public class AdminController {
         return "login";
     }
 
-    /**
-     * Save admin model and view.
-     *
-     * @param adminModel the admin model
-     * @return the model and view
-     */
-    @PostMapping(value = "/saveAdmin")
-    public ModelAndView saveAdmin(@ModelAttribute("admin") final AdminModel adminModel) {
-        adminService.saveAdmin(adminModel);
-        return new ModelAndView("redirect:/admin/list");
-    }
 
     /**
      * Update admin model and view.
@@ -73,7 +62,7 @@ public class AdminController {
     @PostMapping(value = "/updatedAdmin/{id}")
     public ModelAndView updateAdmin(@PathVariable Integer id, @ModelAttribute("admin") AdminModel adminModel) {
         adminService.updateAdmin(id, adminModel);
-        return new ModelAndView("redirect:/admins");
+        return new ModelAndView("redirect:/admin/liste");
     }
 
     /**
@@ -85,7 +74,7 @@ public class AdminController {
     @PostMapping(value = "/deleteAdmin/{id}")
     public ModelAndView deleteAdmin(@PathVariable Integer id) {
         adminService.deleteAdmin(id);
-        return new ModelAndView("redirect:/admins");
+        return new ModelAndView("redirect:/admin/liste");
     }
 
 }

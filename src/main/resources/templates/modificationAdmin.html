@@ -5,7 +5,7 @@
     <title>Mettre a jour l'admin</title>
 </head>
 <body>
-<form th:action="@{/updatedAdmin/{id}(id=${admin.idAdm})}" method="post" th:object="${admin}">
+<form th:action="@{/admin/updatedAdmin/{id}(id=${admin.idAdm})}" method="post" th:object="${admin}">
   <input type="text" th:field="*{prenomAdm}" />
   <input type="text" th:field="*{nomAdm}" />
   <input type="email" th:field="*{emailAdm}" />

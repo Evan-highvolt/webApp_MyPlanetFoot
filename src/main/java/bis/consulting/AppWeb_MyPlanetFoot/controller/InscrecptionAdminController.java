@@ -29,14 +29,8 @@ public class InscrecptionAdminController {
     public String processSignUp(@ModelAttribute("admin") AdminModel admin) {
         admin.setEmailAdm(admin.getCompteModel().getLoginCpt());
         adminService.saveAdmin(admin);
-        return "redirect:/login";
+        return "redirect:/admin/liste";
     }
-
-//    @PostMapping(value = "/saveadmin")
-//    public ModelAndView saveAdmin(@ModelAttribute("admin") final AdminModel adminModel) {
-//        adminService.saveAdmin(adminModel);
-//        return new ModelAndView("redirect:/");
-//    }
 
 
 }
