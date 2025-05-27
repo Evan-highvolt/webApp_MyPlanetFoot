@@ -14,12 +14,14 @@
 <!--    <img th:src="@{/images/football}" alt="Logo My PlanetFoot" class="logo">-->
     <h1>Connectez-vous à My PlanetFoot</h1>
     <form class="login-form" th:action="@{/login}" method="post">
+<!--        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
         <div>
             <input type="text" id="username" name="username" placeholder="Adresse e-mail" required="required" />
         </div>
         <div>
             <input type="password" id="password" name="password" placeholder="Mot de passe" required="required" />
         </div>
+
         <button type="submit">Se connecter</button>
         <a th:href="@{/forgot-password}" class="forgot-password">Mot de passe oublié ?</a>
     </form>

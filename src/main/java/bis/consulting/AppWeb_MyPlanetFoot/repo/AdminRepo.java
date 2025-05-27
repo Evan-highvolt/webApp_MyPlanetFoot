@@ -12,12 +12,25 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Slf4j
 @Component
 public class AdminRepo {
     @Autowired
     private CustomProperties props;
+
+
+    public Optional<AdminModel> findByEmailAdm(String email) {
+        Iterable<AdminModel> admins = getAdmins();
+        for (AdminModel admin : admins) {
+            if (admin.getEmailAdm().equalsIgnoreCase(email)) {
+                return Optional.of(admin);
+            }
+        }
+        return Optional.empty();
+
+    }
 
     public Iterable<AdminModel> getAdmins() {
         String baseURL = props.getApiURL();

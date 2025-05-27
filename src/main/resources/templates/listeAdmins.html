@@ -9,7 +9,6 @@
 </head>
 
 <body>
-<div th:insert="~{fragments/_footer}"></div>
 
 <div class="table-responsive mt-4">
     <table class="table table-hover table-striped table-bordered shadow-lg custom-table">
@@ -19,7 +18,7 @@
             <th scope="col">Nom</th>
             <th scope="col">ID</th>
             <th scope="col">num</th>
-            <th scope="col">Supprimer</th>
+<!--            <th scope="col"></th>-->
         </tr>
         </thead>
         <tbody>
@@ -33,15 +32,15 @@
             <td><span th:text="${admin.nomAdm}">Nom</span></td>
             <td><span th:text="${admin.idAdm}">admin ID</span></td>
             <td><span th:text="${admin.telephoneAdm}">num</span></td>
-            <td>
+            <td class="opertaion">
                 <form th:action="@{/admin/deleteAdmin/{id}(id=${admin.idAdm})}" method="post" style="margin:0;">
-                    <button class="btn btn-danger btn-sm" type="submit"
+                    <button class="btn-delete" type="submit"
                             onclick="return confirm('Confirmer la suppression de cet administrateur ?');">
                         Supprimer
                     </button>
                 </form>
 
-                <button class="btn btn-danger btn-sm">
+                <button class="btn-update">
                 <a th:href="@{/admin/updateAdmin/{id}(id=${admin.idAdm})}" >
                     Mettre à jour</a>
                 </button>

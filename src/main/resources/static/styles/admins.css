@@ -61,4 +61,33 @@ tbody td {
     color: #ff0000;
 }
 
+.opertaion {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.btn-delete {
+    background-color: orangered;
+}
+
+.btn-delete, .btn-update {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    border: none;
+    height: 30px;
+    width: 100px;
+}
+
+
+.btn-update {
+    background-color: green;
+}
+
+.btn-update > a {
+    color: black;
+    text-decoration: none;
+}
+
 /* Animation légère pour les lignes*
