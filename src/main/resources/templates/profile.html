@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/profile.css}">
+    <title th:text="${title ?: 'Page Profil'}">Page Profil</title>
+
+</head>
+<body>
+<nav class="global-nav">
+    <ul>
+        <li><a href="#" th:href="@{/publications}" th:class="${activeTab == 'publications'} ? 'active' : ''">Publications</a></li>
+        <li><a href="#profile-about" th:href="@{/about}" th:class="${activeTab == 'about'} ? 'active' : ''">À propos</a></li>
+        <li><a href="#profile-friends" th:href="@{/friends}" th:class="${activeTab == 'friends'} ? 'active' : ''">Amis</a></li>
+        <li><a href="#profile-photos" th:href="@{/photos}" th:class="${activeTab == 'photos'} ? 'active' : ''">Photos</a></li>
+    </ul>
+</nav>
+
+<div class="profile-container">
+    <section class="profile-intro-section">
+        <div class="profile-picture-container-left">
+            <div class="profile-picture" th:style="${user != null && user.profilePicture != null} ? 'background-image: url(' + ${user.profilePicture} + ');' : 'background-image: url(/images/default-profile.png);'">
+                <!-- Photo de profil -->
+            </div>
+        </div>
+        <div class="profile-name-bio">
+            <h1 th:text="${user != null} ? ${user.name} : 'Nom de l\'Utilisateur'">[Nom de l'Utilisateur]</h1>
+            <p class="bio" th:text="${user != null} ? ${user.bio} : 'Biographie de l\'utilisateur'">[Courte biographie ou slogan de l'utilisateur. Passionné de football !]</p>
+        </div>
+    </section>
+
+    <div class="profile-content">
+        <aside class="profile-sidebar" id="profile-about">
+            <h2>À propos</h2>
+            <p th:text="${user != null && user.about != null} ? ${user.about} : 'Informations sur l\'utilisateur'">[Section "À propos" plus détaillée. Informations sur l'équipe favorite, les joueurs préférés, etc.]</p>
+
+            <h2 id="profile-photos">Photos</h2>
+            <div style="display:flex; flex-wrap:wrap; gap:5px;">
+                <th:block>
+                    <img th:each="photo : ${photos}" th:src="${photo.url}" th:alt="${photo.description}" style="width:90px; height:90px; border-radius:4px;">
+                <block>
+                <th:block>
+                    <img src="/images/placeholder.png" alt="Photo placeholder" style="width:90px; height:90px; border-radius:4px;">
+                    <img src="/images/placeholder.png" alt="Photo placeholder" style="width:90px; height:90px; border-radius:4px;">
+                    <img src="/images/placeholder.png" alt="Photo placeholder" style="width:90px; height:90px; border-radius:4px;">
+                </th:block>
+            </th:block>
+
+            <h2 id="profile-friends">Amis</h2>
+            <p>Aucun ami à afficher</p>
+            <div style="display:flex; flex-wrap:wrap; gap:5px;">
+                <div style="text-align:center; width:70px;">
+                    <img style="width:60px; height:60px; border-radius:50%;">
+                    <p style="font-size:12px; margin-top:5px;">Ami</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="profile-main-feed">
+            <div class="create-post" >
+                <form th:action="@{/posts/create}" method="post">
+                    <textarea></textarea>
+                    <button type="submit">Publier</button>
+                    <div ></div>
+                </form>
+            </div>
+
+            <div class="post">
+                <p>Aucune publication à afficher</p>
+            </div>
+
+            <article>
+                <div class="post-header">
+                    <div class="post-author-img"></div>
+                    <div class="post-author-info">
+
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p >Contenu de la publication</p>
+                    <div  style="margin-top:10px;">
+                        <img  style="max-width:100%; border-radius:4px;" alt="Image de publication">
+                    </div>
+                </div>
+                <div class="post-actions">
+                    <button >J'aime</button>
+                    <button >Commenter</button>
+                    <button >Partager</button>
+                </div>
+            </article>
+        </main>
+    </div>
+</div>
+
+</body>
+</html>
