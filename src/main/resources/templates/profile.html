@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,21 +31,23 @@
     </section>
 
     <div class="profile-content">
-        <aside class="profile-sidebar" id="profile-about">
+        < class="profile-sidebar" id="profile-about">
+
             <h2>À propos</h2>
             <p th:text="${user != null && user.about != null} ? ${user.about} : 'Informations sur l\'utilisateur'">[Section "À propos" plus détaillée. Informations sur l'équipe favorite, les joueurs préférés, etc.]</p>
 
             <h2 id="profile-photos">Photos</h2>
             <div style="display:flex; flex-wrap:wrap; gap:5px;">
                 <th:block>
-                    <img th:each="photo : ${photos}" th:src="${photo.url}" th:alt="${photo.description}" style="width:90px; height:90px; border-radius:4px;">
-                <block>
-                <th:block>
-                    <img src="/images/placeholder.png" alt="Photo placeholder" style="width:90px; height:90px; border-radius:4px;">
-                    <img src="/images/placeholder.png" alt="Photo placeholder" style="width:90px; height:90px; border-radius:4px;">
-                    <img src="/images/placeholder.png" alt="Photo placeholder" style="width:90px; height:90px; border-radius:4px;">
+                        <img th:each="photo : ${photos}" th:src="${photo.url}" th:alt="${photo.description}" style="width:90px; height:90px; border-radius:4px;">
+
+                    <th:block>
+                        <img src="/images/placeholder.png" alt="Photo placeholder" style="width:90px; height:90px; border-radius:4px;">
+                        <img src="/images/placeholder.png" alt="Photo placeholder" style="width:90px; height:90px; border-radius:4px;">
+                        <img src="/images/placeholder.png" alt="Photo placeholder" style="width:90px; height:90px; border-radius:4px;">
+                    </th:block>
                 </th:block>
-            </th:block>
+            </div>
 
             <h2 id="profile-friends">Amis</h2>
             <p>Aucun ami à afficher</p>

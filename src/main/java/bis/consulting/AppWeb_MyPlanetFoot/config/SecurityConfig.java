@@ -5,13 +5,14 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
+import org.springframework.security.web.csrf.XorCsrfTokenRequestAttributeHandler;
 
 
 @Configuration
@@ -29,14 +30,25 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                // CSRF activé (utile avec les formulaires Thymeleaf)
-                .csrf(customizer -> customizer.disable())
 
+        http
+
+                .csrf(csrf -> csrf
+                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()
+                        )
+                        .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
+                )
                 // Sécurité des headers
                 .headers(headers -> headers
                         .contentSecurityPolicy(csp -> csp
-                                .policyDirectives("default-src 'self'; script-src 'self' 'unsafe-inline'; object-src 'none';")
+                                .policyDirectives(
+                                        "default-src 'self'; " +
+                                        "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; " +
+                                        "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; " +
+                                        "img-src 'self' data:; " +
+                                        "object-src 'none'; " +
+                                        "frame-ancestors 'self';"
+                                )
                         )
                         .frameOptions(frame -> frame.sameOrigin())
                 )
@@ -57,7 +69,7 @@ public class SecurityConfig {
 
                 // Login personnalisé avec formulaire
                 .formLogin(form -> form
-                        .loginPage("/login") // Ta page de login Thymeleaf
+                        .loginPage("/login") // la page de login Thymeleaf
                         .defaultSuccessUrl("/admin/liste", true)
                         .permitAll()
                 )
@@ -66,8 +78,12 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout")
+                        .deleteCookies("JSESSIONID")
+                        .invalidateHttpSession(true)
                         .permitAll()
-                );
+                )
+
+        ;
 
         return http.build();
 

@@ -1,14 +1,15 @@
 package bis.consulting.AppWeb_MyPlanetFoot.controller;
 
 import org.springframework.security.web.csrf.CsrfToken;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
-@RestController
+@ControllerAdvice
 public class CsrfController {
-    @GetMapping("/csrf-token")
-    public String csrfToken(CsrfToken token) {
-        return token.getToken();
+    @ModelAttribute
+    public void csrfToken(CsrfToken token, Model model) {
+        model.addAttribute("_csrf", token);
     }
 
 }
